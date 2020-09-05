@@ -19,7 +19,7 @@ class WeatherController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="search", methods={"POST"})
+     * @Route("/", name="search", methods={"POST"})
      */
     public function search(Request $request, WeatherService $weatherService)
     {

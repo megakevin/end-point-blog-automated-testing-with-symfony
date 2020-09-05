@@ -11,7 +11,7 @@
     <h1>Incredible Weather App</h1>
 
     <div>
-        <form action="/search" method="POST">
+        <form action="/" method="POST">
             <label for="city">City:</label>
             <input name="city" name="city" type="text" {% if query is defined %} value="{{ query.city }}" {% endif %} required>
 
