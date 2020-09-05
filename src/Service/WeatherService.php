@@ -25,7 +25,7 @@ class WeatherService
         $this->apiClient = $apiClient;
     }
 
-    public function recordWeatherQuery(array $formData)
+    public function validateWeatherQuery(array $formData)
     {
         $weatherQuery = (new WeatherQuery())
             ->setCity($formData['city'] ?? null)
@@ -43,8 +43,6 @@ class WeatherService
             ];
         }
 
-        $this->repository->add($weatherQuery);
-
         return [
             'success' => true,
             'weatherQuery' => $weatherQuery
@@ -55,7 +53,11 @@ class WeatherService
     {
         $weatherQuery = (new WeatherQuery())
             ->setCity($city)
-            ->setState($state);
+            ->setState($state)
+            ->setCreated(new DateTime())
+        ;
+
+        $this->repository->add($weatherQuery);
 
         $result = $this->apiClient->getCurrentWeather($city, $state);
 

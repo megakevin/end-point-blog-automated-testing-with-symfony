@@ -21,22 +21,13 @@ class WeatherController extends AbstractController
     /**
      * @Route("/", name="search", methods={"POST"})
      */
-    public function search(Request $request, WeatherService $weatherService)
+    public function search(Request $request)
     {
         $formData = $request->request->all();
 
-        $result = $weatherService->recordWeatherQuery($formData);
-
-        if (!$result['success']) {
-            return $this->render('weather/index.html.twig', [
-                'validationErrors' => $result['errors'],
-                'query' => $result['weatherQuery']
-            ]);
-        }
-
         return $this->redirectToRoute('show', [
-            'city' => $result['weatherQuery']->getCity(),
-            'state' => $result['weatherQuery']->getState()
+            'city' => $formData['city'],
+            'state' => $formData['state']
         ]);
     }
 
@@ -45,6 +36,18 @@ class WeatherController extends AbstractController
      */
     public function show(string $city, string $state, WeatherService $weatherService)
     {
+        $result = $weatherService->validateWeatherQuery([
+            'city' => $city,
+            'state' => $state
+        ]);
+
+        if (!$result['success']) {
+            return $this->render('weather/index.html.twig', [
+                'validationErrors' => $result['errors'],
+                'query' => $result['weatherQuery']
+            ]);
+        }
+
         $result = $weatherService->getCurrentWeather($city, $state);
 
         if (!$result['success']) {
