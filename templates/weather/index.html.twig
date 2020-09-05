@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Incredible Weather App{% endblock %}
+
+{% block body %}
+<style>
+    .wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+</style>
+
+<div class="wrapper">
+    <h1>Incredible Weather App</h1>
+
+    <div>
+        <form action="/search" method="POST">
+            <label for="city">City:</label>
+            <input name="city" name="city" type="text" {% if query is defined %} value="{{ query.city }}" {% endif %} required>
+
+            <label for="state">State:</label>
+            <input id="state" name="state" type="text" {% if query is defined %} value="{{ query.state }}" {% endif %} required>
+
+            <input type="submit" value="Get Weather">
+        </form>
+    </div>
+
+    {% if validationErrors is defined %}
+        <ul>
+            {% for error in validationErrors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if apiError is defined %}
+        <ul>
+            <li>Sorry, we could not find that city.</li>
+        </ul>
+    {% endif %}
+
+    {% if weather is defined %}
+        <div>
+            <h2>{{ weather.description }}</h2>
+            <p>The current weather in {{ weather.city }}, {{ weather.state }} is {{ weather.summary }}.</p>
+
+            <h2>Temp: {{ weather.temperature }}</h2>
+
+            <table>
+                <tr>
+                    <td>Feels like:</td>
+                    <td>{{ weather.feelsLike }}</td>
+                </tr>
+                <tr>
+                    <td>Min:</td>
+                    <td>{{ weather.tempMin }}</td>
+                </tr>
+                <tr>
+                    <td>Max:</td>
+                    <td>{{ weather.tempMax }}</td>
+                </tr>
+                <tr>
+                    <td>Pressure:</td>
+                    <td>{{ weather.pressure }}</td>
+                </tr>
+                <tr>
+                    <td>Humidity:</td>
+                    <td>{{ weather.humidity }}</td>
+                </tr>
+            </table>
+
+            <h2>Visibility: {{ weather.visibility }}</h2>
+
+            <h2>Wind</h2>
+            <table>
+                <tr>
+                    <td>Speed:</td>
+                    <td>{{ weather.windSpeed }}</td>
+                </tr>
+                <tr>
+                    <td>Degree:</td>
+                    <td>{{ weather.windDeg }}</td>
+                </tr>
+                <tr>
+                    <td>Gust:</td>
+                    <td>{{ weather.windGust }}</td>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
