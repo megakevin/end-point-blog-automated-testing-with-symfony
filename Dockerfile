@@ -13,7 +13,7 @@ ARG USER=docker
 ARG UID=1000
 ARG GID=1000
 
-RUN apt-get update && apt-get install -y software-properties-common wget
+RUN apt-get update && apt-get install -y software-properties-common wget sqlite3
 
 RUN add-apt-repository ppa:ondrej/php
 RUN apt-get update && apt-get install -y php composer php-xdebug php-sqlite3 php-xml
