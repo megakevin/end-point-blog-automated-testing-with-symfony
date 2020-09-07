@@ -91,6 +91,9 @@ class WeatherQuery
 
     public static function build($city, $state)
     {
+        $city = ucwords($city);
+        $state = strtoupper($state);
+
         $weatherQuery = (new WeatherQuery())
             ->setCity($city)
             ->setState($state)
