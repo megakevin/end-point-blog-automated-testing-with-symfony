@@ -83,7 +83,8 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "serve": "symfony server:start --port=3000 --no-tls"
     },
     "conflict": {
         "symfony/symfony": "*"
