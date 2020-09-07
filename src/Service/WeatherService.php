@@ -63,8 +63,8 @@ class WeatherService
         $apiResponse = $result['response'];
 
         $weather = (new Weather())
-            ->setCity($city)
-            ->setState($state)
+            ->setCity($weatherQuery->getCity())
+            ->setState($weatherQuery->getState())
             ->setDescription($apiResponse["weather"][0]["main"])
             ->setSummary($apiResponse["weather"][0]["description"])
             ->setTemperature($apiResponse["main"]["temp"])
