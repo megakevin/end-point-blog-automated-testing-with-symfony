@@ -36,10 +36,7 @@ class WeatherController extends AbstractController
      */
     public function show(string $city, string $state, WeatherService $weatherService)
     {
-        $result = $weatherService->validateWeatherQuery([
-            'city' => $city,
-            'state' => $state
-        ]);
+        $result = $weatherService->validateWeatherQuery($city, $state);
 
         if (!$result['success']) {
             return $this->render('weather/index.html.twig', [

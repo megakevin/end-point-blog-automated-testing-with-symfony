@@ -81,7 +81,7 @@ class WeatherQuery
         return $this;
     }
 
-    public static function build($city, $state)
+    public static function build(string $city, string $state): WeatherQuery
     {
         $city = ucwords($city);
         $state = strtoupper($state);
@@ -93,13 +93,5 @@ class WeatherQuery
         ;
 
         return $weatherQuery;
-    }
-
-    public static function buildFromFormData(array $data)
-    {
-        return WeatherQuery::build(
-            $data['city'] ?? null,
-            $data['state'] ?? null
-        );
     }
 }

@@ -25,9 +25,9 @@ class WeatherService
         $this->apiClient = $apiClient;
     }
 
-    public function validateWeatherQuery(array $formData)
+    public function validateWeatherQuery(string $city, string $state)
     {
-        $weatherQuery = WeatherQuery::buildFromFormData($formData);
+        $weatherQuery = WeatherQuery::build($city, $state);
 
         $errors = $this->validator->validate($weatherQuery);
 
