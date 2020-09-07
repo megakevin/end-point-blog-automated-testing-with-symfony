@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -78,5 +79,24 @@ class WeatherQuery
         $this->created = $created;
 
         return $this;
+    }
+
+    public static function buildFromFormData(array $data)
+    {
+        return WeatherQuery::build(
+            $data['city'] ?? null,
+            $data['state'] ?? null
+        );
+    }
+
+    public static function build($city, $state)
+    {
+        $weatherQuery = (new WeatherQuery())
+            ->setCity($city)
+            ->setState($state)
+            ->setCreated(new DateTime())
+        ;
+
+        return $weatherQuery;
     }
 }

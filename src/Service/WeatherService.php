@@ -27,11 +27,7 @@ class WeatherService
 
     public function validateWeatherQuery(array $formData)
     {
-        $weatherQuery = (new WeatherQuery())
-            ->setCity($formData['city'] ?? null)
-            ->setState($formData['state'] ?? null)
-            ->setCreated(new DateTime())
-        ;
+        $weatherQuery = WeatherQuery::buildFromFormData($formData);
 
         $errors = $this->validator->validate($weatherQuery);
 
@@ -51,11 +47,7 @@ class WeatherService
 
     public function getCurrentWeather(string $city, string $state)
     {
-        $weatherQuery = (new WeatherQuery())
-            ->setCity($city)
-            ->setState($state)
-            ->setCreated(new DateTime())
-        ;
+        $weatherQuery = WeatherQuery::build($city, $state);
 
         $this->repository->add($weatherQuery);
 
