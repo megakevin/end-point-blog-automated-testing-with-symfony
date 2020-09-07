@@ -62,22 +62,7 @@ class WeatherService
 
         $apiResponse = $result['response'];
 
-        $weather = (new Weather())
-            ->setCity($weatherQuery->getCity())
-            ->setState($weatherQuery->getState())
-            ->setDescription($apiResponse["weather"][0]["main"])
-            ->setSummary($apiResponse["weather"][0]["description"])
-            ->setTemperature($apiResponse["main"]["temp"])
-            ->setFeelsLike($apiResponse["main"]["feels_like"])
-            ->setTempMin($apiResponse["main"]["temp_min"])
-            ->setTempMax($apiResponse["main"]["temp_max"])
-            ->setPressure($apiResponse["main"]["pressure"])
-            ->setHumidity($apiResponse["main"]["humidity"])
-            ->setVisibility($apiResponse["visibility"])
-            ->setWindSpeed($apiResponse["wind"]["speed"])
-            ->setWindDeg($apiResponse["wind"]["deg"] ?? 0)
-            ->setWindGust($apiResponse["wind"]["gust"] ?? 0)
-        ;
+        $weather = Weather::build($weatherQuery, $apiResponse);
 
         return [
             'success' => true,
