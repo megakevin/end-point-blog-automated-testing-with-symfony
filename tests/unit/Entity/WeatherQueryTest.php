@@ -4,6 +4,7 @@ namespace App\Tests\Unit\Entity;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Validation;
 use App\Entity\WeatherQuery;
 
 class WeatherQueryTest extends TestCase
@@ -66,41 +67,33 @@ class WeatherQueryTest extends TestCase
         );
     }
 
-    // buildFromFormData
-    public function testBuildFromFormDataAssignsTheParametersToTheCorrectFields()
+    // Validation rules
+    /**
+     * @dataProvider getValidationTestCases
+     */
+    public function testValidation($city, $state, $expected)
     {
         // Arrange
-        $testCity = 'MyCity';
-        $testState = 'ST';
+        $subject = WeatherQuery::build($city, $state);
+
+        $validator = Validation::createValidatorBuilder()
+            ->enableAnnotationMapping()
+            ->getValidator();
 
         // Act
-        $result = WeatherQuery::buildFromFormData([
-            'city' => $testCity,
-            'state' => $testState
-        ]);
+        $result = $validator->validate($subject);
 
         // Assert
-        $this->assertEquals($testCity, $result->getCity());
-        $this->assertEquals($testState, $result->getState());
+        $this->assertEquals($expected, count($result) == 0);
     }
 
-    public function testBuildFromFormDataSetsTheCurrentMomentAsTheCreatedField()
+    public function getValidationTestCases()
     {
-        // Arrange
-        $testCity = 'My City';
-        $testState = 'ST';
-
-        // Act
-        $result = WeatherQuery::buildFromFormData([
-            'city' => $testCity,
-            'state' => $testState
-        ]);
-
-        // Assert
-        $this->assertEquals(
-            (new DateTime())->getTimestamp(),
-            $result->getCreated()->getTimestamp(),
-            '', 1
-        );
+        return [
+            'Succeeds when data is correct' => [ 'New York', 'NY', true ],
+            'Fails when city is missing' => [ '', 'NY', false ],
+            'Fails when state is missing' => [ 'New York', '', false ],
+            'Fails when state is not a valid US state' => [ 'New York', 'AAA', false ],
+        ];
     }
 }
