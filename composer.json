@@ -88,7 +88,7 @@
             "Composer\\Config::disableProcessTimeout",
             "symfony server:start --port=3000 --no-tls"
         ],
-        "unit": "bin/phpunit --testdox tests/unit/"
+        "test": "bin/phpunit --testdox tests/unit/"
     },
     "conflict": {
         "symfony/symfony": "*"
