@@ -215,7 +215,6 @@ class WeatherServiceTest extends TestCase
             ->getValidator();
 
         $mockRepository = $this->createMock(WeatherQueryRepository::class);
-        $mockRepository->method('add');
 
         $mockApiClient = $this->createMock(WeatherApiClient::class);
         $mockApiClient->method('getCurrentWeather')->willReturn([
@@ -251,7 +250,6 @@ class WeatherServiceTest extends TestCase
             ->getValidator();
 
         $mockRepository = $this->createMock(WeatherQueryRepository::class);
-        $mockRepository->method('add');
 
         $mockApiClient = $this->createMock(WeatherApiClient::class);
         $mockApiClient->method('getCurrentWeather')->willReturn([
@@ -284,7 +282,6 @@ class WeatherServiceTest extends TestCase
             ->getValidator();
 
         $mockRepository = $this->createMock(WeatherQueryRepository::class);
-        $mockRepository->method('add');
 
         $mockApiClient = $this->createMock(WeatherApiClient::class);
         $mockApiClient->method('getCurrentWeather')->willReturn([
@@ -312,7 +309,6 @@ class WeatherServiceTest extends TestCase
             ->getValidator();
 
         $mockRepository = $this->createMock(WeatherQueryRepository::class);
-        $mockRepository->method('add');
 
         $mockApiClient = $this->createMock(WeatherApiClient::class);
         $mockApiClient->method('getCurrentWeather')->willReturn([
@@ -342,7 +338,6 @@ class WeatherServiceTest extends TestCase
             ->getValidator();
 
         $mockRepository = $this->createMock(WeatherQueryRepository::class);
-        $mockRepository->method('add');
 
         $mockApiClient = $this->createMock(WeatherApiClient::class);
         $mockApiClient->method('getCurrentWeather')->willReturn([
@@ -371,7 +366,6 @@ class WeatherServiceTest extends TestCase
             ->getValidator();
 
         $mockRepository = $this->createMock(WeatherQueryRepository::class);
-        $mockRepository->method('add');
 
         $mockApiClient = $this->createMock(WeatherApiClient::class);
         $mockApiClient->method('getCurrentWeather')->willReturn([
@@ -407,7 +401,6 @@ class WeatherServiceTest extends TestCase
             ->getValidator();
 
         $mockRepository = $this->createMock(WeatherQueryRepository::class);
-        $mockRepository->method('add');
 
         $mockApiClient = $this->createMock(WeatherApiClient::class);
         $mockApiClient->method('getCurrentWeather')->willReturn([
