@@ -6,11 +6,14 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class WeatherApiClient
 {
+    private $openWeatherMapAppId;
     private $httpClient;
 
     public function __construct(
+        string $openWeatherMapAppId,
         HttpClientInterface $httpClient
     ) {
+        $this->openWeatherMapAppId = $openWeatherMapAppId;
         $this->httpClient = $httpClient;
     }
 
@@ -18,7 +21,7 @@ class WeatherApiClient
     {
         $response = $this->httpClient->request(
             'GET',
-            'http://api.openweathermap.org/data/2.5/weather?q=' . $city . ',' . $state . ',us&appid=fc47b8e275a1fe6f31f7ffe3fef615d8'
+            'http://api.openweathermap.org/data/2.5/weather?q=' . $city . ',' . $state . ',us&appid=' . $this->openWeatherMapAppId
         );
 
         if ($response->getStatusCode() != 200) {
