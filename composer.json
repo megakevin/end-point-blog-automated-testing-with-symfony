@@ -89,7 +89,12 @@
             "Composer\\Config::disableProcessTimeout",
             "symfony server:start --port=3000 --no-tls"
         ],
-        "test": "bin/phpunit --testdox tests/unit/"
+        "drop-test-db": "bin/console doctrine:schema:drop --force --env=test",
+        "create-test-db": "bin/console doctrine:schema:create --env=test",
+        "reload-test-db": "composer drop-test-db && composer create-test-db",
+        "test": "bin/phpunit --testdox tests",
+        "test-unit": "bin/phpunit --testdox tests/unit",
+        "test-functional": "bin/phpunit --testdox tests/functional"
     },
     "conflict": {
         "symfony/symfony": "*"
