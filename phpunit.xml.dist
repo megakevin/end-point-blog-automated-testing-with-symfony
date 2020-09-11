@@ -16,12 +16,12 @@
     </php>
 
     <testsuites>
-        <testsuite name="Unit Tests Suite">
+        <testsuite name="Unit">
             <directory>tests/unit</directory>
         </testsuite>
-        <!-- <testsuite name="Functional Tests Suite">
+        <testsuite name="Functional">
             <directory>tests/functional</directory>
-        </testsuite> -->
+        </testsuite>
     </testsuites>
 
     <filter>
