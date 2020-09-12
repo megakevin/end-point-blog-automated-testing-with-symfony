@@ -1,4 +1,6 @@
 {
+    "name": "endpoint/weather-app",
+    "description": "Companion demo application for a blog post about automated testing using the Symfony PHP framework published in the endpoint.com/blog blog.",
     "type": "project",
     "license": "proprietary",
     "require": {
