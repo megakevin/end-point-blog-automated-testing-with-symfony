@@ -13,10 +13,10 @@ ARG USER=docker
 ARG UID=1000
 ARG GID=1000
 
-RUN apt-get update && apt-get install -y software-properties-common wget sqlite3
+RUN apt-get update && apt-get install -y software-properties-common wget curl sqlite3
 
 RUN add-apt-repository ppa:ondrej/php
-RUN apt-get update && apt-get install -y php composer php-xdebug php-sqlite3 php-xml
+RUN apt-get update && apt-get install -y php composer php-xdebug php-sqlite3 php-xml php-curl
 
 # Configuring Xdebug
 RUN echo "xdebug.remote_enable=on" >> /etc/php/7.4/mods-available/xdebug.ini
