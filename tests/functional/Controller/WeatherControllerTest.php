@@ -84,7 +84,7 @@ class WeatherControllerTest extends WebTestCase
         $client->request('GET', '/show/New%20York/NY');
 
         // Assert
-        $this->assertSelectorTextContains('div.wrapper', 'Clouds');
+        $this->assertSelectorTextContains('div.wrapper', 'The current weather');
         $this->assertSelectorTextContains('div.wrapper', 'Temp');
         $this->assertSelectorTextContains('div.wrapper', 'Feels like');
         $this->assertSelectorTextContains('div.wrapper', 'Min');
