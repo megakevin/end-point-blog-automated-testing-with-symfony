@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Entity\WeatherQuery;
 use App\Repository\WeatherQueryRepository;
 
-class WeatherApiClientTest extends KernelTestCase
+class WeatherQueryRepositoryTest extends KernelTestCase
 {
     public function testAddSavesANewRecordIntoTheDatabase()
     {
